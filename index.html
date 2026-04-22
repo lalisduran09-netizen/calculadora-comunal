@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Calculadora Comunal | Gobernación de Casanare 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f9 0%, #e0e8f2 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            padding: 28px 20px;
+        }
+
+        .main-card {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 48px;
+            box-shadow: 0 25px 45px -12px rgba(0, 32, 64, 0.25);
+            overflow: visible;
+        }
+
+        .header-modern {
+            background: linear-gradient(105deg, #00315C 0%, #1B4A7A 100%);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .logo-cluster {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,245,0.15);
+            padding: 8px 18px;
+            border-radius: 80px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-img {
+            height: 58px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.1);
+        }
+
+        .title-right {
+            text-align: right;
+        }
+
+        .gov-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .sub-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #BFDBFE;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            margin-top: 8px;
+        }
+
+        .content-inner {
+            padding: 32px 36px 42px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(125deg, #0A2F44, #1E5A88);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .badge-circular {
+            background: #EFF6FF;
+            padding: 6px 16px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1E4A76;
+            border: 1px solid #BFDBFE;
+        }
+
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 24px 0 28px;
+        }
+
+        .card-panel {
+            flex: 1;
+            min-width: 300px;
+            background: #FFFFFF;
+            border-radius: 36px;
+            border: 1px solid #E9F0F5;
+            padding: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .card-panel h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1F4662;
+            margin-bottom: 20px;
+            border-left: 5px solid #3182CE;
+            padding-left: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #2B6A9F;
+            margin: 16px 0 6px 0;
+            display: block;
+        }
+
+        input, .plancha-row input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border-radius: 32px;
+            border: 1.5px solid #E2EDF7;
+            background: #FEFEFE;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2C7EB8;
+            box-shadow: 0 0 0 3px rgba(44,126,184,0.2);
+        }
+
+        .plancha-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .plancha-row span {
+            font-weight: 800;
+            background: #EFF3F8;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+        }
+        .btn-remove {
+            background: #E53E3E;
+            width: auto;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-add {
+            background: #2C7A47;
+            margin-top: 10px;
+            width: auto;
+            padding: 10px 22px;
+            border-radius: 40px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #1A5F8C;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 48px;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-primary:hover, .btn-add:hover, .btn-remove:hover {
+            filter: brightness(0.92);
+            transform: translateY(-1px);
+        }
+
+        .bloque-item {
+            background: #F8FBFE;
+            border-radius: 28px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #E2EDF7;
+        }
+        .bloque-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .bloque-nombre-input {
+            font-weight: bold;
+            font-size: 1rem;
+            width: auto;
+            padding: 6px 12px;
+            background: white;
+        }
+        .cargos-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .cargo-tag {
+            background: white;
+            border: 1px solid #C9E0F0;
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-eliminar-cargo {
+            background: none;
+            border: none;
+            color: #E53E3E;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .btn-agregar-cargo {
+            background: #EFF6FF;
+            border: 1px dashed #3182CE;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .result-card {
+            background: #FFFFFF;
+            border-radius: 36px;
+            margin-top: 32px;
+            border: 1px solid #EAF0F6;
+            overflow-x: auto;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 600px;
+        }
+        .result-table th {
+            background: #F0F7FE;
+            padding: 16px 10px;
+            color: #1C4E76;
+            font-weight: 700;
+        }
+        .result-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #ECF3F9;
+            vertical-align: middle;
+        }
+        .electo-badge {
+            background: #E0F7E8;
+            color: #1D6F3C;
+            font-weight: bold;
+            border-radius: 40px;
+            padding: 5px 12px;
+            display: inline-block;
+            font-size: 0.75rem;
+        }
+        .electo-badge-empate {
+            background: #FEF3C7;
+            color: #92400E;
+            font-weight: bold;
+            border-radius: 40px;
+            padding: 5px 12px;
+            display: inline-block;
+            font-size: 0.75rem;
+            border: 1px solid #F59E0B;
+        }
+        .warning-badge {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 12px 16px;
+            border-radius: 20px;
+            margin: 12px 0;
+            font-size: 0.8rem;
+        }
+        .suma-validacion {
+            background: #F0FDF4;
+            border: 1px solid #86EFAC;
+            padding: 10px 16px;
+            border-radius: 20px;
+            margin: 12px 0;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .suma-correcta {
+            color: #166534;
+            font-weight: bold;
+        }
+        .suma-incorrecta {
+            color: #991B1B;
+            font-weight: bold;
+        }
+        .empate-alert {
+            background: #FEE2E2;
+            border-left: 4px solid #DC2626;
+            padding: 12px 16px;
+            border-radius: 20px;
+            margin: 8px 0 16px 0;
+            font-size: 0.8rem;
+            color: #991B1B;
+            font-weight: 500;
+        }
+        .empate-suave-alert {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 10px 16px;
+            border-radius: 20px;
+            margin: 8px 0 16px 0;
+            font-size: 0.75rem;
+            color: #92400E;
+        }
+        .info-suplente {
+            background: #E0F2FE;
+            border-left: 4px solid #0284C7;
+            padding: 10px 16px;
+            border-radius: 20px;
+            margin: 8px 0 16px 0;
+            font-size: 0.75rem;
+            color: #0369A1;
+        }
+        .footer-info {
+            background: #F5FAFF;
+            border-radius: 28px;
+            padding: 18px;
+            margin-top: 28px;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        .button-group-bottom {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-secondary {
+            background: #6B7280;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 48px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            min-width: 160px;
+        }
+        .btn-reset {
+            background: #F59E0B;
+        }
+        .btn-pdf {
+            background: #DC2626;
+        }
+        .btn-excel {
+            background: #059669;
+        }
+        .btn-secondary:hover {
+            filter: brightness(0.9);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 780px) {
+            .content-inner { padding: 20px; }
+            .header-modern { flex-direction: column; align-items: flex-start; }
+            .title-right { text-align: left; }
+            .btn-secondary { min-width: 130px; padding: 10px 12px; font-size: 0.8rem; }
+            .result-table { font-size: 0.7rem; }
+            .electo-badge { font-size: 0.65rem; padding: 3px 8px; }
+            .suma-validacion { font-size: 0.7rem; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="main-card">
+    <div class="header-modern">
+        <div class="logo-cluster">
+            <div class="logo-wrapper">
+                <img src="logo gober-31.png" alt="Gobernación de Casanare" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏛️ SECRETARIA DE GOBIERNO'">
+            </div>
+            <div class="logo-wrapper">
+                <img src="logos-32.png" alt="Proyectos Casanare" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='📋 PROYECTO COMUNAL'">
+            </div>
+        </div>
+        <div class="title-right">
+            <div class="gov-title">GOBERNACIÓN DE CASANARE</div>
+            <div class="sub-title">Dirección de Desarrollo Comunitario 2026</div>
+        </div>
+    </div>
+
+    <div class="content-inner" id="pdfContent">
+        <h1>🗳️ Calculadora Comunal 2026 <span class="badge-circular">Circular 009 · Cociente Electoral</span></h1>
+
+        <!-- EJEMPLO RÁPIDO 
+        <div class="suma-validacion" style="background:#EFF6FF; margin-bottom:20px;">
+            <span>📌 <strong>Ejemplo:</strong> Votos válidos = 44 | Plancha 1 = 22 | Plancha 2 = 11 | Plancha 3 = 11</span>
+            <button id="cargarEjemploBtn" style="background:#1A5F8C; color:white; border:none; padding:6px 16px; border-radius:40px; cursor:pointer;">📋 Cargar este ejemplo</button>
+        </div> -->
+
+        <div class="two-columns">
+            <div class="card-panel">
+                <h2 style="text-align: center;">📅 COMO USAR LA CALCULADORA</h2><br>
+                <h2 style="text-align: center;">PASO 1</h2>
+                <label>🗳️ Escribir aqui los VOTOS VÁLIDOS + BLANCOS</label>
+                <input type="number" id="totalVotosValidos" placeholder="Ej: 44" value="0">
+                <h2 style="text-align: center;">PASO 2</h2>
+            
+                <label>📋 Escribir aqui los Votos por plancha</label>
+                <div id="planchasContainer"></div>
+                <button type="button" class="btn-add" id="agregarPlancha">+ Agregar plancha</button>
+            </div>
+            <div class="card-panel">
+            <h2 style="text-align: center;">PASO 3</h2>
+            <h4 style="text-align: center;">Verificar los bloques</h4><br>
+                <h3>📌 Bloques y cargos a elegir</h3>
+                <p style="font-size:0.8rem; color:#2B6A9F;">Cada bloque tiene sus propios cargos. El cociente se calcula por bloque.</p>
+                <div id="bloquesContainer"></div>
+                <button type="button" class="btn-add" id="agregarBloque">+ Agregar nuevo bloque</button>
+            </div>
+        </div>
+
+        <!-- Suma de votos de planchas y validación -->
+        <div id="sumaValidacion"></div>
+
+        <button class="btn-primary" id="calcularBtn">🔢 PASO 4 : Dar clic aqui para calcular asignación por cociente electoral</button>
+        
+        <div id="resultados"></div>
+        
+        <div class="footer-info">
+            📌 <strong>Metodología:</strong><br>
+            1. Votos Válidos = Suma votos planchas + votos en blanco (NO se cuentan nulos ni no marcados)<br>
+            2. Cociente = Votos Válidos ÷ Número de cargos del bloque<br>
+            3. Cada plancha obtiene tantos cargos como el número entero de (sus votos ÷ cociente)<br>
+            4. Los cargos se asignan en orden descendente: 1° a la plancha con más votos, 2° a la siguiente, etc.<br>
+            5. Los cargos restantes se asignan por MAYOR RESIDUO<br>
+            6. <span style="background:#FEE2E2; padding:2px 8px; border-radius:12px;">🔴 Si hay EMPATE CRÍTICO en residuos (más planchas empatadas que cargos disponibles), se muestra alerta y requiere desempate</span><br>
+            7. <span style="background:#FEF3C7; padding:2px 8px; border-radius:12px;">🟡 Si hay EMPATE NO CRÍTICO (hay suficientes cargos para todos los empatados), se muestra advertencia informativa</span><br>
+            8. Para bloques de 1 cargo: gana la plancha con MAYOR votación<br>
+            9. <span style="background:#E0F2FE; padding:2px 8px; border-radius:12px;">👥 Para DELEGADOS y FISCAL: cada elegido lleva su SUPLENTE automáticamente</span>
+        </div>
+
+        <div class="button-group-bottom">
+            <button class="btn-secondary btn-reset" id="resetBtn">🔄 Resetear todo</button>
+            <button class="btn-secondary btn-pdf" id="exportPdfBtn">📄 Exportar a PDF</button>
+            <button class="btn-secondary btn-excel" id="exportExcelBtn">📊 Exportar a Excel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Bloques predefinidos según el video
+    const DEFAULT_PLANCHAS = [
+        { nombre: "PLANCHA 1", votos: 0 },
+        { nombre: "PLANCHA 2", votos: 0 }
+    ];
+    const DEFAULT_BLOQUES = [
+        { nombre: "DIRECTIVA PRINCIPAL", cargos: ["Presidente", "Vicepresidente", "Tesorero", "Secretario"] },
+        { nombre: "CONCILIADORES", cargos: ["Conciliador 1", "Conciliador 2", "Conciliador 3"] },
+        { nombre: "DELEGADOS", cargos: ["Delegado 1", "Delegado 2", "Delegado 3"] },
+        { nombre: "FISCAL", cargos: ["Fiscal"] }
+    ];
+
+    let planchas = JSON.parse(JSON.stringify(DEFAULT_PLANCHAS));
+    let bloques = JSON.parse(JSON.stringify(DEFAULT_BLOQUES));
+
+    function escapeHtml(str) { 
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m){
+            return m==='&' ? '&amp;' : (m==='<' ? '&lt;' : '&gt;');
+        }); 
+    }
+
+    function cargarEjemplo() {
+        document.getElementById("totalVotosValidos").value = 44;
+        planchas = [
+            { nombre: "PLANCHA 1", votos: 22 },
+            { nombre: "PLANCHA 2", votos: 11 },
+            { nombre: "PLANCHA 3", votos: 11 }
+        ];
+        renderPlanchasUI();
+        document.getElementById("resultados").innerHTML = "";
+        actualizarSumaValidacion();
+    }
+
+    function actualizarSumaValidacion() {
+        let suma = 0;
+        for(let i = 0; i < planchas.length; i++) {
+            suma += planchas[i].votos;
+        }
+        let totalValidos = parseInt(document.getElementById("totalVotosValidos").value) || 0;
+        let div = document.getElementById("sumaValidacion");
+        
+        if(totalValidos === 0 && suma === 0) {
+            div.innerHTML = `<div class="suma-validacion">
+                <span>📊 Suma de votos de planchas: <strong>${suma}</strong></span>
+                <span>⚖️ Votos VÁLIDOS totales: <strong>${totalValidos}</strong></span>
+                <span class="suma-correcta">✅ Ingrese los datos para comenzar</span>
+            </div>`;
+        } else if(suma === totalValidos) {
+            div.innerHTML = `<div class="suma-validacion">
+                <span>📊 Suma de votos de planchas: <strong>${suma}</strong></span>
+                <span>⚖️ Votos VÁLIDOS totales: <strong>${totalValidos}</strong></span>
+                <span class="suma-correcta">✅ CORRECTO: La suma coincide con los votos válidos</span>
+            </div>`;
+        } else {
+            let diferencia = totalValidos - suma;
+            div.innerHTML = `<div class="suma-validacion" style="background:#FEF3C7; border-color:#F59E0B;">
+                <span>📊 Suma de votos de planchas: <strong>${suma}</strong></span>
+                <span>⚖️ Votos VÁLIDOS totales: <strong>${totalValidos}</strong></span>
+                <span class="suma-incorrecta">⚠️ DIFERENCIA de ${Math.abs(diferencia)} votos (${diferencia > 0 ? 'faltan' : 'sobran'} ${Math.abs(diferencia)} votos en la suma de planchas)</span>
+            </div>`;
+        }
+    }
+
+    function resetAll() {
+        document.getElementById("totalVotosValidos").value = 0;
+        for(let i = 0; i < planchas.length; i++) {
+            planchas[i].votos = 0;
+        }
+        renderPlanchasUI();
+        document.getElementById("resultados").innerHTML = "";
+        actualizarSumaValidacion();
+    }
+
+    function renderPlanchasUI() {
+        const container = document.getElementById("planchasContainer");
+        if(!container) return;
+        container.innerHTML = "";
+        planchas.forEach((p, idx) => {
+            const div = document.createElement("div");
+            div.className = "plancha-row";
+            div.innerHTML = `
+                <span>${idx+1}</span>
+                <input type="text" value="${escapeHtml(p.nombre)}" data-idx="${idx}" data-field="nombre" class="plancha-nombre" style="flex:2;">
+                <input type="number" value="${p.votos}" data-idx="${idx}" data-field="votos" class="plancha-votos" style="flex:1;">
+                <button type="button" class="btn-remove" data-idx="${idx}">✖</button>
+            `;
+            container.appendChild(div);
+        });
+        
+        document.querySelectorAll(".plancha-nombre").forEach(inp => {
+            inp.removeEventListener("change", handleNombreChange);
+            inp.addEventListener("change", handleNombreChange);
+        });
+        document.querySelectorAll(".plancha-votos").forEach(inp => {
+            inp.removeEventListener("change", handleVotosChange);
+            inp.addEventListener("change", (e) => { handleVotosChange(e); actualizarSumaValidacion(); });
+        });
+        document.querySelectorAll(".btn-remove").forEach(btn => {
+            btn.removeEventListener("click", handleRemovePlancha);
+            btn.addEventListener("click", (e) => { handleRemovePlancha(e); actualizarSumaValidacion(); });
+        });
+        actualizarSumaValidacion();
+    }
+    
+    function handleNombreChange(e) {
+        let i = parseInt(e.target.dataset.idx);
+        if(planchas[i]) planchas[i].nombre = e.target.value;
+    }
+    
+    function handleVotosChange(e) {
+        let i = parseInt(e.target.dataset.idx);
+        let v = parseInt(e.target.value);
+        if(planchas[i]) planchas[i].votos = isNaN(v) ? 0 : v;
+    }
+    
+    function handleRemovePlancha(e) {
+        let i = parseInt(e.target.dataset.idx);
+        if(planchas.length > 1) {
+            planchas.splice(i, 1);
+            renderPlanchasUI();
+        } else {
+            alert("Debe haber al menos una plancha");
+        }
+    }
+
+    function renderBloquesUI() {
+        const container = document.getElementById("bloquesContainer");
+        if(!container) return;
+        container.innerHTML = "";
+        bloques.forEach((bloque, bIdx) => {
+            const div = document.createElement("div");
+            div.className = "bloque-item";
+            div.innerHTML = `
+                <div class="bloque-header">
+                    <input type="text" value="${escapeHtml(bloque.nombre)}" data-bloque="${bIdx}" class="bloque-nombre-input" style="font-weight:bold; font-size:1rem; width:auto; padding:6px 12px;">
+                    <button type="button" class="btn-remove-bloque" data-bloque="${bIdx}" style="background:#9CA3AF; padding:4px 16px; border-radius:40px; border:none; cursor:pointer; color:white;">Eliminar bloque</button>
+                </div>
+                <div class="cargos-lista" id="cargos-lista-${bIdx}">
+                    ${bloque.cargos.map((cargo, cIdx) => `<span class="cargo-tag">${escapeHtml(cargo)} <button class="btn-eliminar-cargo" data-bloque="${bIdx}" data-cargo="${cIdx}" style="background:none; border:none; cursor:pointer; color:#E53E3E;">✖</button></span>`).join('')}
+                </div>
+                <div><input type="text" id="nuevo-cargo-${bIdx}" placeholder="Nuevo cargo (ej: Vocal)" style="width:auto; display:inline-block; width:150px; padding:8px;"> 
+                <button class="btn-agregar-cargo" data-bloque="${bIdx}" style="background:#EFF6FF; border:1px dashed #3182CE; padding:6px 14px; border-radius:40px; cursor:pointer;">+ Agregar cargo</button></div>
+            `;
+            container.appendChild(div);
+        });
+        
+        document.querySelectorAll(".bloque-nombre-input").forEach(inp => {
+            inp.addEventListener("change", (e) => { let idx = parseInt(inp.dataset.bloque); if(bloques[idx]) bloques[idx].nombre = inp.value; });
+        });
+        
+        document.querySelectorAll(".btn-remove-bloque").forEach(btn => {
+            btn.addEventListener("click", (e) => { let idx = parseInt(btn.dataset.bloque); if(bloques.length > 1) { bloques.splice(idx,1); renderBloquesUI(); } else { alert("Debe haber al menos un bloque"); } });
+        });
+        
+        document.querySelectorAll(".btn-eliminar-cargo").forEach(btn => {
+            btn.addEventListener("click", (e) => { let bIdx = parseInt(btn.dataset.bloque); let cIdx = parseInt(btn.dataset.cargo); if(bloques[bIdx] && bloques[bIdx].cargos.length > 1) { bloques[bIdx].cargos.splice(cIdx,1); renderBloquesUI(); } else { alert("Cada bloque debe tener al menos 1 cargo"); } });
+        });
+        
+        document.querySelectorAll(".btn-agregar-cargo").forEach(btn => {
+            btn.addEventListener("click", (e) => { let bIdx = parseInt(btn.dataset.bloque); let input = document.getElementById(`nuevo-cargo-${bIdx}`); let nuevoCargo = input.value.trim(); if(nuevoCargo && bloques[bIdx]) { bloques[bIdx].cargos.push(nuevoCargo); renderBloquesUI(); } });
+        });
+    }
+
+    // Función mejorada: detecta empates y los clasifica como críticos o no críticos
+    function detectarEmpatesPlanchas(resultadoCargos, cargosDisponibles) {
+        let empatesCriticos = [];
+        let empatesNoCriticos = [];
+        
+        // Agrupar por cargo
+        let cargosMap = new Map();
+        for(let item of resultadoCargos) {
+            if(!cargosMap.has(item.cargo)) {
+                cargosMap.set(item.cargo, []);
+            }
+            cargosMap.get(item.cargo).push(item);
+        }
+        
+        // Para cada cargo, verificar si hay empate en residuo
+        for(let [cargo, items] of cargosMap) {
+            // Agrupar por residuo
+            let residuosMap = new Map();
+            for(let item of items) {
+                let residuoKey = item.residuo.toFixed(4);
+                if(!residuosMap.has(residuoKey)) {
+                    residuosMap.set(residuoKey, []);
+                }
+                residuosMap.get(residuoKey).push(item);
+            }
+            
+            // Analizar cada grupo de residuo
+            for(let [residuo, planchasEmpatadas] of residuosMap) {
+                if(planchasEmpatadas.length > 1 && parseFloat(residuo) > 0) {
+                    // Hay empate en este residuo
+                    let numCargosEnJuego = planchasEmpatadas.length;
+                    
+                    // Verificar cuántos de estos cargos realmente se asignaron por residuo
+                    let cargosPorResiduo = planchasEmpatadas.filter(item => 
+                        item.cargosPorCociente === 0 && item.residuo > 0
+                    ).length;
+                    
+                    if(cargosPorResiduo > 0 && cargosPorResiduo < planchasEmpatadas.length) {
+                        // Empate crítico: no hay suficientes cargos para todos los empatados
+                        empatesCriticos.push({
+                            cargo: cargo,
+                            residuo: parseFloat(residuo).toFixed(2),
+                            planchas: planchasEmpatadas.map(p => p.planchaNombre),
+                            cargosDisputados: cargosPorResiduo
+                        });
+                    } else if(cargosPorResiduo === planchasEmpatadas.length && cargosPorResiduo > 0) {
+                        // Empate no crítico: hay suficientes cargos para todos
+                        empatesNoCriticos.push({
+                            cargo: cargo,
+                            residuo: parseFloat(residuo).toFixed(2),
+                            planchas: planchasEmpatadas.map(p => p.planchaNombre)
+                        });
+                    }
+                }
+            }
+        }
+        
+        return { empatesCriticos, empatesNoCriticos };
+    }
+
+    function asignarCargosPorBloque(votosPlanchas, totalVotosValidos, cargos) {
+        const numCargos = cargos.length;
+        const numPlanchas = votosPlanchas.length;
+        
+        // Caso especial: bloque de 1 cargo - gana la plancha con más votos
+        if(numCargos === 1) {
+            let maxVotos = -1;
+            let ganadoraIdx = 0;
+            for(let i = 0; i < numPlanchas; i++) {
+                if(votosPlanchas[i] > maxVotos) {
+                    maxVotos = votosPlanchas[i];
+                    ganadoraIdx = i;
+                }
+            }
+            return {
+                resultadoCargos: [{ 
+                    cargo: cargos[0], 
+                    planchaIdx: ganadoraIdx, 
+                    planchaNombre: planchas[ganadoraIdx].nombre, 
+                    residuo: 0, 
+                    votos: votosPlanchas[ganadoraIdx],
+                    cargosPorCociente: 0
+                }],
+                cociente: totalVotosValidos,
+                empatesCriticos: [],
+                empatesNoCriticos: []
+            };
+        }
+        
+        const cociente = totalVotosValidos / numCargos;
+        let cargosPorCociente = votosPlanchas.map(v => Math.floor(v / cociente));
+        let residuos = votosPlanchas.map((v, i) => v - (cargosPorCociente[i] * cociente));
+        
+        // Ordenar planchas por votos (para asignación ordenada)
+        let indicesPorVoto = [...Array(numPlanchas).keys()];
+        indicesPorVoto.sort((a,b) => votosPlanchas[b] - votosPlanchas[a]);
+        
+        let ordenAsignacion = [];
+        
+        // Asignar cargos por cociente (en orden de votación)
+        for(let i = 0; i < indicesPorVoto.length; i++) {
+            let pIdx = indicesPorVoto[i];
+            let cargosAsignar = cargosPorCociente[pIdx];
+            for(let j = 0; j < cargosAsignar; j++) {
+                ordenAsignacion.push(pIdx);
+            }
+        }
+        
+        let cargosFaltantes = numCargos - ordenAsignacion.length;
+        
+        if(cargosFaltantes > 0) {
+            // Preparar planchas para asignación por residuo
+            let planchasDisponibles = [];
+            for(let i = 0; i < numPlanchas; i++) {
+                planchasDisponibles.push({ 
+                    idx: i, 
+                    residuo: residuos[i], 
+                    votos: votosPlanchas[i],
+                    yaTieneCargo: ordenAsignacion.includes(i)
+                });
+            }
+            
+            // Ordenar por residuo (mayor a menor) y luego por votos
+            planchasDisponibles.sort((a,b) => {
+                if(Math.abs(b.residuo - a.residuo) > 0.001) return b.residuo - a.residuo;
+                return b.votos - a.votos;
+            });
+            
+            // Asignar los cargos faltantes
+            for(let i = 0; i < cargosFaltantes; i++) {
+                let pIdx = planchasDisponibles[i % planchasDisponibles.length].idx;
+                ordenAsignacion.push(pIdx);
+            }
+        }
+        
+        // Construir resultado de cargos
+        let resultadoCargos = [];
+        for(let i = 0; i < numCargos && i < ordenAsignacion.length; i++) {
+            let planchaIdx = ordenAsignacion[i];
+            resultadoCargos.push({
+                cargo: cargos[i],
+                planchaIdx: planchaIdx,
+                planchaNombre: planchas[planchaIdx].nombre,
+                residuo: residuos[planchaIdx],
+                votos: votosPlanchas[planchaIdx],
+                cargosPorCociente: cargosPorCociente[planchaIdx]
+            });
+        }
+        
+        // Detectar empates
+        const { empatesCriticos, empatesNoCriticos } = detectarEmpatesPlanchas(resultadoCargos, numCargos);
+        
+        return { resultadoCargos, cociente, empatesCriticos, empatesNoCriticos };
+    }
+
+    function calcularYMostrar() {
+        let totalVotosValidos = parseInt(document.getElementById("totalVotosValidos").value) || 0;
+        if(totalVotosValidos === 0) { 
+            alert("Ingrese el total de votos válidos (planchas + blancos)"); 
+            return; 
+        }
+        
+        document.querySelectorAll(".plancha-votos").forEach(inp => {
+            let idx = parseInt(inp.dataset.idx);
+            let val = parseInt(inp.value);
+            if(!isNaN(idx) && planchas[idx]) planchas[idx].votos = isNaN(val) ? 0 : val;
+        });
+        
+        let votosPlanchas = planchas.map(p => p.votos);
+        let sumaPlanchas = votosPlanchas.reduce((a,b) => a + b, 0);
+        
+        let warning = "";
+        if(Math.abs(sumaPlanchas - totalVotosValidos) > 1 && totalVotosValidos > 0 && sumaPlanchas !== totalVotosValidos) {
+            warning = `<div class="warning-badge">⚠️ La suma de votos de planchas (${sumaPlanchas}) es diferente a Votos Válidos totales (${totalVotosValidos}).</div>`;
+        }
+        
+        let resultadosHTML = `<div class="result-card" style="overflow-x:auto;"><table class="result-table" id="resultadosTabla"><thead>
+            <th style="min-width:120px;">BLOQUE / CARGO</th>
+            ${planchas.map(p => `<th style="min-width:100px;">${escapeHtml(p.nombre)}<br>(${p.votos} votos)</th>`).join('')}
+            <th style="min-width:120px;">CARGO ASIGNADO A</th>
+         </thead><tbody>`;
+        
+        for(let bloqueIdx = 0; bloqueIdx < bloques.length; bloqueIdx++) {
+            const bloque = bloques[bloqueIdx];
+            const cargos = bloque.cargos;
+            const { resultadoCargos, cociente, empatesCriticos, empatesNoCriticos } = asignarCargosPorBloque(votosPlanchas, totalVotosValidos, cargos);
+            
+            let cocienteTexto = cargos.length === 1 ? "(1 cargo - Mayor votación)" : `Cociente: ${totalVotosValidos}/${cargos.length} = ${cociente.toFixed(4)}`;
+            resultadosHTML += `<tr style="background:#EFF6FF;"><td colspan="${planchas.length+2}" style="text-align:left; font-weight:bold; padding:12px;">📌 ${escapeHtml(bloque.nombre)} (${cargos.length} cargos · ${cocienteTexto})</td></tr>`;
+            
+            // Mostrar advertencias de empate no crítico (informativo)
+            if(empatesNoCriticos.length > 0) {
+                resultadosHTML += `<tr><td colspan="${planchas.length+2}" style="padding:0;"><div class="empate-suave-alert">`;
+                resultadosHTML += `<strong>🟡 EMPATE INFORMATIVO (no requiere desempate):</strong><br>`;
+                for(let emp of empatesNoCriticos) {
+                    resultadosHTML += `• El cargo <strong>${emp.cargo}</strong> tuvo empate en residuo (${emp.residuo}) entre las planchas <strong>${emp.planchas.join(' y ')}</strong>. `;
+                    resultadosHTML += `Como hay suficientes cargos, se asignó uno a cada plancha.<br>`;
+                }
+                resultadosHTML += `</div></td></tr>`;
+            }
+            
+            for(let i = 0; i < resultadoCargos.length; i++) {
+                const item = resultadoCargos[i];
+                let residuoTexto = "";
+                let tieneEmpateCritico = empatesCriticos.some(e => e.cargo === item.cargo && e.planchas.includes(item.planchaNombre));
+                let tieneEmpateNoCritico = empatesNoCriticos.some(e => e.cargo === item.cargo && e.planchas.includes(item.planchaNombre));
+                
+                if(cargos.length > 1 && item.residuo > 0 && item.residuo < 1000) {
+                    residuoTexto = ` (residuo ${item.residuo.toFixed(2)})`;
+                } else if(cargos.length > 1 && item.cargosPorCociente > 0) {
+                    residuoTexto = ` (${item.cargosPorCociente} por cociente)`;
+                }
+                
+                resultadosHTML += `<tr>
+                    <td style="font-weight:500; text-align:left; padding-left:20px;">🏛️ ${escapeHtml(item.cargo)}</td>`;
+                
+                for(let p = 0; p < planchas.length; p++) {
+                    if(p === item.planchaIdx) {
+                        if(tieneEmpateCritico) {
+                            resultadosHTML += `<td style="background:#FEE2E2;"><span class="electo-badge-empate">⚠️ EMPATE CRÍTICO${residuoTexto}</span></td>`;
+                        } else if(tieneEmpateNoCritico) {
+                            resultadosHTML += `<td style="background:#FEF3C7;"><span class="electo-badge-empate">🟡 EMPATE${residuoTexto}</span></td>`;
+                        } else {
+                            resultadosHTML += `<td style="background:#E8F4FD;"><span class="electo-badge">✔️ ELECTA${residuoTexto}</span></td>`;
+                        }
+                    } else {
+                        resultadosHTML += `<td style="color:#9CA3AF;">—</td>`;
+                    }
+                }
+                
+                // Mostrar plancha ganadora o alerta de empate crítico
+                if(tieneEmpateCritico) {
+                    const empateInfo = empatesCriticos.find(e => e.cargo === item.cargo);
+                    resultadosHTML += `<td style="background:#FEE2E2; font-weight:bold;">🔴 EMPATE CRÍTICO: ${empateInfo.planchas.join(' y ')} (residuo ${empateInfo.residuo}) - Se requiere sorteo o desempate</td>`;
+                } else if(tieneEmpateNoCritico) {
+                    resultadosHTML += `<td style="background:#FEF3C7; font-weight:bold;">${escapeHtml(item.planchaNombre)}${residuoTexto} (empate no crítico)</td>`;
+                } else {
+                    resultadosHTML += `<td style="background:#E8F4FD; font-weight:bold;">${escapeHtml(item.planchaNombre)}${residuoTexto}</td>`;
+                }
+                resultadosHTML += `</tr>`;
+            }
+            
+            // Mostrar alerta de empate crítico si existe (resumen)
+            if(empatesCriticos.length > 0) {
+                resultadosHTML += `<tr><td colspan="${planchas.length+2}" style="padding:0;"><div class="empate-alert">`;
+                resultadosHTML += `<strong>🔴 ¡ALERTA DE EMPATE CRÍTICO EN ${bloque.nombre.toUpperCase()}!</strong><br>`;
+                for(let emp of empatesCriticos) {
+                    resultadosHTML += `• El cargo <strong>${emp.cargo}</strong> tiene el mismo residuo (${emp.residuo}) entre las planchas <strong>${emp.planchas.join(' y ')}</strong>. `;
+                    resultadosHTML += `⚠️ Hay ${emp.cargosDisputados} cargo(s) disponible(s) para ${emp.planchas.length} planchas empatadas. `;
+                    resultadosHTML += `Requiere <strong>desempate según estatutos (artículo o sorteo)</strong>.<br>`;
+                }
+                resultadosHTML += `</div></td></tr>`;
+            }
+            
+            // Mostrar información de suplentes para DELEGADOS y FISCAL
+            if(bloque.nombre.toUpperCase() === "DELEGADOS" || bloque.nombre.toUpperCase() === "FISCAL") {
+                resultadosHTML += `<tr><td colspan="${planchas.length+2}" style="padding:0;"><div class="info-suplente">`;
+                resultadosHTML += `<strong>👥 SUPLENTES AUTOMÁTICOS:</strong><br>`;
+                for(let i = 0; i < resultadoCargos.length; i++) {
+                    const item = resultadoCargos[i];
+                    const tieneEmpateCritico = empatesCriticos.some(e => e.cargo === item.cargo);
+                    if(!tieneEmpateCritico) {
+                        resultadosHTML += `• ${item.cargo} elegido de <strong>${item.planchaNombre}</strong> → automáticamente elige también a su <strong>SUPLENTE de ${item.cargo}</strong> (de la misma plancha)<br>`;
+                    } else {
+                        resultadosHTML += `• ${item.cargo} tiene EMPATE CRÍTICO - Se requiere desempate para definir titular y suplente<br>`;
+                    }
+                }
+                resultadosHTML += `</div></td></tr>`;
+            }
+        }
+        
+        resultadosHTML += `</tbody></table></div>${warning}`;
+        document.getElementById("resultados").innerHTML = resultadosHTML;
+    }
+
+    function exportToPDF() {
+        const resultadosDiv = document.getElementById("resultados");
+        if(!resultadosDiv.innerHTML.trim()) {
+            alert("Primero debe calcular los resultados antes de exportar a PDF.");
+            return;
+        }
+        
+        const element = document.getElementById("pdfContent");
+        const now = new Date();
+        const fechaHora = now.toLocaleString('es-CO', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+        
+        let timestampDiv = element.querySelector('.pdf-timestamp');
+        if(!timestampDiv) {
+            timestampDiv = document.createElement('div');
+            timestampDiv.className = 'timestamp pdf-timestamp';
+            timestampDiv.style.textAlign = 'center';
+            timestampDiv.style.fontSize = '0.7rem';
+            timestampDiv.style.color = '#6B7280';
+            timestampDiv.style.marginTop = '20px';
+            timestampDiv.style.paddingTop = '12px';
+            timestampDiv.style.borderTop = '1px solid #E5E7EB';
+            element.querySelector('.content-inner').appendChild(timestampDiv);
+        }
+        timestampDiv.innerHTML = `📅 Documento generado el: ${fechaHora} | Calculadora Comunal - Circular 009 MinInterior`;
+        
+        const opt = {
+            margin: [0.5, 0.5, 0.5, 0.5],
+            filename: `calculadora_comunal_${now.getFullYear()}_${now.getMonth()+1}_${now.getDate()}_${now.getHours()}_${now.getMinutes()}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true, logging: false },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+        };
+        
+        html2pdf().set(opt).from(element).save();
+    }
+
+    function exportToExcel() {
+        const resultadosDiv = document.getElementById("resultados");
+        if(!resultadosDiv.innerHTML.trim()) {
+            alert("Primero debe calcular los resultados antes de exportar a Excel.");
+            return;
+        }
+        
+        let totalVotosValidos = parseInt(document.getElementById("totalVotosValidos").value) || 0;
+        let votosPlanchas = planchas.map(p => p.votos);
+        
+        let excelData = [];
+        excelData.push(["CALCULADORA COMUNAL 2026 - GOBERNACIÓN DE CASANARE"]);
+        excelData.push(["Fecha de exportación:", new Date().toLocaleString('es-CO')]);
+        excelData.push([]);
+        excelData.push(["DATOS GENERALES"]);
+        excelData.push(["Total Votos Válidos", totalVotosValidos]);
+        excelData.push([]);
+        excelData.push(["PLANCHAS"]);
+        excelData.push(["Plancha", "Votos"]);
+        for(let i = 0; i < planchas.length; i++) {
+            excelData.push([planchas[i].nombre, planchas[i].votos]);
+        }
+        excelData.push([]);
+        
+        for(let bloqueIdx = 0; bloqueIdx < bloques.length; bloqueIdx++) {
+            const bloque = bloques[bloqueIdx];
+            const cargos = bloque.cargos;
+            const { resultadoCargos, cociente, empatesCriticos, empatesNoCriticos } = asignarCargosPorBloque(votosPlanchas, totalVotosValidos, cargos);
+            
+            excelData.push([`${bloque.nombre.toUpperCase()}`]);
+            excelData.push(["Cociente electoral:", `${totalVotosValidos} / ${cargos.length} = ${cociente.toFixed(4)}`]);
+            excelData.push([]);
+            excelData.push(["CARGO", "PLANCHA GANADORA", "RESIDUO", "OBSERVACIÓN"]);
+            
+            for(let i = 0; i < resultadoCargos.length; i++) {
+                const item = resultadoCargos[i];
+                let observacion = "";
+                let tieneEmpateCritico = empatesCriticos.some(e => e.cargo === item.cargo && e.planchas.includes(item.planchaNombre));
+                let tieneEmpateNoCritico = empatesNoCriticos.some(e => e.cargo === item.cargo && e.planchas.includes(item.planchaNombre));
+                
+                if(tieneEmpateCritico) {
+                    observacion = "🔴 EMPATE CRÍTICO - Requiere desempate por sorteo o artículo";
+                } else if(tieneEmpateNoCritico) {
+                    observacion = "🟡 EMPATE NO CRÍTICO - Se asignó por haber suficientes cargos";
+                } else if(cargos.length > 1 && item.residuo > 0) {
+                    observacion = `Asignado por mayor residuo (${item.residuo.toFixed(2)})`;
+                } else if(cargos.length > 1 && item.cargosPorCociente > 0) {
+                    observacion = `Asignado por cociente (${item.cargosPorCociente} cargo por cociente)`;
+                } else if(cargos.length === 1) {
+                    observacion = "Gana por MAYOR votación";
+                } else {
+                    observacion = "Asignado por orden de votación";
+                }
+                excelData.push([item.cargo, item.planchaNombre, item.residuo > 0 ? item.residuo.toFixed(2) : "-", observacion]);
+            }
+            
+            // Agregar información de empates
+            if(empatesCriticos.length > 0) {
+                excelData.push([]);
+                excelData.push(["🔴 ALERTA DE EMPATES CRÍTICOS"]);
+                for(let emp of empatesCriticos) {
+                    excelData.push([`Cargo: ${emp.cargo}`, `Residuo: ${emp.residuo}`, `Planchas empatadas: ${emp.planchas.join(' y ')}`, "REQUIERE DESEMPATE URGENTE"]);
+                }
+            }
+            if(empatesNoCriticos.length > 0) {
+                excelData.push([]);
+                excelData.push(["🟡 EMPATES NO CRÍTICOS (informativo)"]);
+                for(let emp of empatesNoCriticos) {
+                    excelData.push([`Cargo: ${emp.cargo}`, `Residuo: ${emp.residuo}`, `Planchas empatadas: ${emp.planchas.join(' y ')}`, "Se asignó un cargo a cada una"]);
+                }
+            }
+            
+            // Agregar información de suplentes para DELEGADOS y FISCAL
+            if(bloque.nombre.toUpperCase() === "DELEGADOS" || bloque.nombre.toUpperCase() === "FISCAL") {
+                excelData.push([]);
+                excelData.push(["SUPLENTES AUTOMÁTICOS"]);
+                for(let i = 0; i < resultadoCargos.length; i++) {
+                    const item = resultadoCargos[i];
+                    const tieneEmpateCritico = empatesCriticos.some(e => e.cargo === item.cargo);
+                    if(!tieneEmpateCritico) {
+                        excelData.push([`${item.cargo}`, `${item.planchaNombre}`, "SUPLENTE", `${item.planchaNombre} (automático)`]);
+                    } else {
+                        excelData.push([`${item.cargo}`, "EMPATE CRÍTICO", "SUPLENTE", "Requiere desempate para definir titular y suplente"]);
+                    }
+                }
+            }
+            excelData.push([]);
+        }
+        
+        const now = new Date();
+        const ws = XLSX.utils.aoa_to_sheet(excelData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Calculadora Comunal 2026");
+        
+        const colWidths = [{wch:30}, {wch:20}, {wch:15}, {wch:50}];
+        ws['!cols'] = colWidths;
+        
+        XLSX.writeFile(wb, `calculadora_comunal_${now.getFullYear()}_${now.getMonth()+1}_${now.getDate()}.xlsx`);
+    }
+
+    document.getElementById("agregarPlancha")?.addEventListener("click", () => { 
+        planchas.push({ nombre: `PLANCHA ${planchas.length+1}`, votos: 0 }); 
+        renderPlanchasUI(); 
+    });
+    document.getElementById("agregarBloque")?.addEventListener("click", () => { 
+        bloques.push({ nombre: `Nuevo Bloque ${bloques.length+1}`, cargos: ["Cargo 1"] }); 
+        renderBloquesUI(); 
+    });
+    document.getElementById("calcularBtn")?.addEventListener("click", calcularYMostrar);
+    document.getElementById("resetBtn")?.addEventListener("click", resetAll);
+    document.getElementById("exportPdfBtn")?.addEventListener("click", exportToPDF);
+    document.getElementById("exportExcelBtn")?.addEventListener("click", exportToExcel);
+    document.getElementById("cargarEjemploBtn")?.addEventListener("click", cargarEjemplo);
+    
+    renderPlanchasUI();
+    renderBloquesUI();
+    actualizarSumaValidacion();
+</script>
+</body>
+</html>
